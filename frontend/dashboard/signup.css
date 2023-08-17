@@ -1,0 +1,20 @@
+body {
+  background-image: url("../peakpx.jpg");
+}
+
+a {
+  color: rgb(249, 249, 249);
+  font-weight: bolder;
+}
+
+.boxer {
+  background-color: rgba(12, 135, 183, 0.513);
+}
+
+input,
+select {
+  background-color: rgba(247, 247, 247, 0.78) !important;
+}
+.input-group-text {
+  background-color: rgba(107, 35, 97, 0.877);
+}
