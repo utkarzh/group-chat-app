@@ -14,7 +14,7 @@ const socketConfig = require("./socket/socket");
 const app = express();
 const server = require("http").createServer(app);
 const jwt = require("jsonwebtoken");
-const io = socketConfig(server);
+const io = socketConfig(server); //
 
 const cors = require("cors");
 app.use(express.json());

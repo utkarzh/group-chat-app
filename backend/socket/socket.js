@@ -20,17 +20,14 @@ module.exports = (server) => {
     const { username } = await User.findOne({ where: { id: socket.userId } });
     socket.userName = username;
 
-    // Join a group
     socket.on("join", (groupId) => {
       socket.join(groupId);
     });
 
-    // Leave a group
     socket.on("leave", (groupId) => {
       socket.leave(groupId);
     });
 
-    // Receive and broadcast messages
     socket.on("sendMessage", async (data) => {
       const { groupId, content } = data;
       io.to(groupId).emit("message", {
@@ -43,7 +40,6 @@ module.exports = (server) => {
           return;
         }
 
-        // Create a new message
         const newMessage = await Message.create({
           content,
           GroupId: groupId,
