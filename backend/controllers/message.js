@@ -2,7 +2,6 @@ const Group = require("../models/group");
 const User = require("../models/user");
 const Message = require("../models/message");
 
-// Send a message to the group
 exports.sendMessage = async (req, res) => {
   const { groupId } = req.params;
   const { content } = req.body;
@@ -13,7 +12,6 @@ exports.sendMessage = async (req, res) => {
       return res.status(404).json({ message: "Group not found" });
     }
 
-    // Create a new message
     const newMessage = await Message.create({
       content,
       GroupId: groupId,
@@ -48,16 +46,13 @@ exports.getGroupMessages = async (req, res) => {
       return res.status(404).json({ message: "Group not found" });
     }
 
-    // Extract the group name
     const groupName = group.name;
 
-    // Extract the messages from the group object
     const messages = group.Messages.map((message) => ({
       content: message.content,
-      senderName: message.User.username, // Use "User" association directly
+      senderName: message.User.username,
     }));
 
-    // Combine the group name and messages in a response object
     const groupMessagesResponse = {
       groupName,
       messages,

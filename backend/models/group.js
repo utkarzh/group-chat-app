@@ -4,7 +4,6 @@ const Group = sequelize.define("Group", {
   name: {
     type: Sequelize.STRING,
     allowNull: false,
-    unique: true,
   },
 });
 module.exports = Group;

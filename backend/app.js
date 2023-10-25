@@ -9,8 +9,13 @@ const User = require("./models/user");
 const Message = require("./models/message");
 const GroupMember = require("./models/groupmember");
 const Group = require("./models/group");
+const socketConfig = require("./socket/socket");
 
 const app = express();
+const server = require("http").createServer(app);
+const jwt = require("jsonwebtoken");
+const io = socketConfig(server);
+
 const cors = require("cors");
 app.use(express.json());
 app.use(cors());
@@ -19,9 +24,9 @@ app.use(groupRoutes);
 app.use(groupmemberRoutes);
 app.use(messageRoutes);
 sequelize
-  .sync()
+  .sync({ force: false })
   .then((_) => {
-    app.listen(process.env.PORT);
+    server.listen(process.env.PORT);
   })
   .catch((err) => {
     console.log(err);
